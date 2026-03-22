@@ -36,28 +36,6 @@ jobs:
         run: python -m pytest --ctrf ctrf/ctrf-report.json -p no:cacheprovider
         continue-on-error: true
 
-      - name: Fix CTRF timestamps
-        # pytest-json-ctrf emits float-second timestamps; CTRF spec requires
-        # integer milliseconds. Convert both summary and per-test timestamps.
-        run: |
-          python3 - <<'EOF'
-          import json, math
-          with open("ctrf/ctrf-report.json") as f:
-              report = json.load(f)
-          s = report["results"]["summary"]
-          s["start"] = math.floor(s["start"] * 1000)
-          s["stop"]  = math.floor(s["stop"]  * 1000)
-          for t in report["results"].get("tests", []):
-              if "start" in t:
-                  t["start"] = math.floor(t["start"] * 1000)
-              if "stop" in t:
-                  t["stop"] = math.floor(t["stop"] * 1000)
-              if "duration" in t:
-                  t["duration"] = math.floor(t["duration"] * 1000)
-          with open("ctrf/ctrf-report.json", "w") as f:
-              json.dump(report, f)
-          EOF
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
