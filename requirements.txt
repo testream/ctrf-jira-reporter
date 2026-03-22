@@ -1,0 +1,7 @@
+# Test runner
+pytest
+
+# Generates a CTRF (Common Test Report Format) JSON file from pytest results.
+# Use: pytest --ctrf ctrf/ctrf-report.json
+# The generated report is then uploaded to Testream via @testream/upload-action.
+pytest-json-ctrf
