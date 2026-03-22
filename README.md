@@ -93,7 +93,7 @@ The workflow at `.github/workflows/ctrf.yml` runs all tests on every push and pu
 |---|---|
 | `TESTREAM_API_KEY` | your Testream API key |
 
-All other metadata (branch, commit SHA, build number, build URL, repository URL) is resolved automatically by the action — nothing else to configure.
+All other metadata (branch, commit SHA, build number, build URL, repository URL) is resolved automatically by `@testream/upload-action` from the GitHub Actions environment — nothing else to configure.
 
 ## Other CI providers
 
