@@ -52,6 +52,8 @@ jobs:
                   t["start"] = math.floor(t["start"] * 1000)
               if "stop" in t:
                   t["stop"] = math.floor(t["stop"] * 1000)
+              if "duration" in t:
+                  t["duration"] = math.floor(t["duration"] * 1000)
           with open("ctrf/ctrf-report.json", "w") as f:
               json.dump(report, f)
           EOF
