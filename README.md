@@ -2,7 +2,7 @@
 
 This repository demonstrates how to upload test results to [Testream](https://testream.app) using the **CLI reporter** (`@testream/upload-action`) — the framework-agnostic approach that works with *any* test tool that can produce a [CTRF](https://ctrf.io) JSON report.
 
-The project uses **Python + pytest** as the test framework — a language Testream does not natively support — paired with [`pytest-json-ctrf`](https://pypi.org/project/pytest-json-ctrf/) to generate a CTRF report. The report is then uploaded to Testream via the `testream/upload-action` GitHub Action (or CLI for other CI providers).
+The project uses **Python + pytest** as the test framework — a language Testream does not natively support yet — paired with [`pytest-json-ctrf`](https://pypi.org/project/pytest-json-ctrf/) to generate a CTRF report. The report is then uploaded to Testream via the `testream/upload-action` GitHub Action (or CLI for other CI providers).
 
 ## What is Testream?
 
@@ -82,25 +82,6 @@ TESTREAM_API_KEY=your_api_key_here npx @testream/upload-action \
 ```
 
 Results will appear in your Testream project immediately.
-
-## How it works
-
-The workflow has two independent steps:
-
-```
-pytest tests/ --ctrf ctrf/ctrf-report.json
-        │
-        ▼
-  ctrf/ctrf-report.json  (CTRF JSON produced by pytest-json-ctrf)
-        │
-        ▼
-npx @testream/upload-action --report-path ctrf/ctrf-report.json ...
-        │
-        ▼
-  Results visible in Testream → Jira
-```
-
-This separation means you can swap the test framework for anything that produces CTRF — Go, Rust, Ruby, .NET, or a custom runner — without changing the upload step.
 
 ## CI with GitHub Actions
 
