@@ -1,7 +1,7 @@
 """Shopping cart implementation.
 
 Used by the pytest test suite to generate realistic CTRF test results
-that are uploaded to Jira via @testream/upload-action (Testream CLI).
+that are uploaded to Jira via @testream/cli (Testream CLI).
 """
 
 from __future__ import annotations

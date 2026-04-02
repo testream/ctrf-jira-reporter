@@ -2,9 +2,9 @@ name: Example CTRF CLI Upload Workflow with Testream Reporter for Jira
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 concurrency:
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
           cache: pip
 
       - name: Install dependencies
@@ -49,9 +49,9 @@ jobs:
         #   Settings → Secrets and variables → Actions → New repository secret
         #
         # branch, commit-sha, repository-url, build-number, and build-url are
-        # auto-detected by @testream/upload-action from the GitHub Actions environment.
+        # auto-detected by @testream/cli from the GitHub Actions environment.
         run: |
-          npx @testream/upload-action \
+          npx @testream/cli \
             --report-path ctrf/ctrf-report.json \
             --api-key "$TESTREAM_API_KEY" \
             --test-tool pytest \
